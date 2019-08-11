@@ -29,7 +29,9 @@ function processCommand(receivedMessage) {
         helpCommand(arguments, receivedMessage)
     } else if (primaryCommand == "multiply") {
         multiplyCommand(arguments, receivedMessage)
-    } else {
+    } else if (primaryCommand == "ping"){
+        receivedMessage.channel.send("pong")
+    } else{
         receivedMessage.channel.send("I don't understand the command. Try `!help` or `!multiply`")
     }
 }
