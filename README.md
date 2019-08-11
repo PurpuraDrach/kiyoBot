@@ -1,5 +1,7 @@
 # sinBot
-# The Official Sinbot
+The Official Sinbot
 
 ## How to run
-### run the batch file `runBot.bat` and thats it
+Go into the systems folder and run the `NadekoBot.exe` file
+
+However it should be noted that this bot is currently running in heroku hence the Procfile.
