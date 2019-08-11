@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/PurpuraDrach/sinBot/issues"
   },
-  "homepage": "https://github.com/PurpuraDrach/sinBot#readme"
+  "homepage": "https://github.com/PurpuraDrach/sinBot#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
 }
