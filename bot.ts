@@ -1,5 +1,7 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
+const commands = require('./commands/command.ts')
+require("dotenv").config()
 
 // readying the bot
 client.on('ready', msg => {
@@ -30,7 +32,7 @@ function processCommand(receivedMessage) {
     console.log("Command received: " + primaryCommand)
     console.log("Arguments: " + arguments) // There may not be any arguments
 
-    doCommand(primaryCommand, receivedMessage, arguments)
+    commands.doCommand(primaryCommand, receivedMessage, arguments)
 }
 
 client.login(process.env.BOT_TOKEN)

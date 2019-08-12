@@ -1,6 +1,6 @@
 //todo improve the help command 
 
-function helpCommand(arguments, receivedMessage) {
+module.exports.helpCommand = function(arguments, receivedMessage) {
   if (arguments.length > 0) {
       receivedMessage.channel.send("It looks like you might need help with " + arguments)
   } else {

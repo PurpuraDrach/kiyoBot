@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/PurpuraDrach/sinBot#readme",
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "@types/node": "^12.7.1",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.0.0"
   }
 }

@@ -1,10 +1,12 @@
 // do the command
+const multiply = require('./multiply.ts')
+const help = require('./help.ts')
 
-function doCommand(primaryCommand, receivedMessage, arguments) {
+module.exports.doCommand = function(primaryCommand, receivedMessage, arguments){
     if (primaryCommand == "help") {
-      helpCommand(arguments, receivedMessage)
+      help.helpCommand(arguments, receivedMessage)
   } else if (primaryCommand == "multiply") {
-      multiplyCommand(arguments, receivedMessage)
+      multiply.multiplyCommand(arguments, receivedMessage)
   } else if (primaryCommand == "ping"){
       receivedMessage.channel.send("pong")
   } else{
