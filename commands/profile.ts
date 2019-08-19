@@ -25,7 +25,8 @@ module.exports.profileCommand = function(receivedMessage) {
         profileEmbed.setTitle(res.rows[0].name)
         profileEmbed.setThumbnail(receivedMessage.author.avatarURL)
         profileEmbed.addField("Level",res.rows[0].level,true)
-        profileEmbed.addField("Experience",res.rows[0].experience,true)
+        const expBar = String(Number(res.rows[0].experience)%1000)
+        profileEmbed.addField("Experience",expBar+"/1000",true)
         profileEmbed.addField("Sins",res.rows[0].sins,false)
         receivedMessage.channel.send(profileEmbed)
       } else {
