@@ -2,7 +2,17 @@
 var Main = require("../bot.ts")
 require("dotenv").config()
 
-module.exports.profileCommand = function(receivedMessage) {
+module.exports.profileCommand = function(receivedMessage, arguments) {
+
+  var searchID = receivedMessage.author.id
+  if (arguments.length > 0) {
+    if (arguments[0].slice(2,3) == '!'){
+      searchID = arguments[0].slice(3,21)
+    } else {
+      searchID = arguments[0].slice(2,20)
+    }
+  }
+
   var database = new Main.dbClient.Client ({
       connectionString: process.env.DATABASE_URL,
       ssl: true,
@@ -11,7 +21,7 @@ module.exports.profileCommand = function(receivedMessage) {
 
   // query 
   var text = 'SELECT * from "Users" u WHERE u.id = $1;'
-  var values = [receivedMessage.author.id]
+  var values = [searchID]
   database.query(text, values, (err, res) => {
     if (err) {
       console.log(err)
@@ -23,7 +33,7 @@ module.exports.profileCommand = function(receivedMessage) {
         // create embed to display info
         const profileEmbed = new Main.Discord.RichEmbed();
         profileEmbed.setTitle(res.rows[0].name)
-        profileEmbed.setThumbnail(receivedMessage.author.avatarURL)
+        profileEmbed.setThumbnail(receivedMessage.guild.members.get(searchID).user.avatarURL)
         profileEmbed.addField("Level",res.rows[0].level,true)
         const expBar = String(Number(res.rows[0].experience)%1000)
         profileEmbed.addField("Experience",expBar+"/1000",true)
