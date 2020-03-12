@@ -5,6 +5,7 @@ const Discord = require('discord.js')
 const client = new Discord.Client()
 const dbClient = require('pg');
 const commands = require('./commands/command.ts')
+const levelUp = require('./utils/profileLevel.ts')
 require("dotenv").config()
 
 
@@ -24,64 +25,22 @@ client.on('message', (receivedMessage) => {
     if (receivedMessage.content.startsWith(".")) {
         processCommand(receivedMessage)
     }
+    // updates exp 
+    // levelUp.updateExp(receivedMessage, "10")
 })
 
 // splicing command and sending it to doCommand to be processed
 function processCommand(receivedMessage) {
-    checkUser(receivedMessage)
-    // updateExp(receivedMessage, "10")
-    let fullCommand = receivedMessage.content.substr(1) // Remove the leading exclamation mark
+    levelUp.checkUser(receivedMessage)
+    let fullCommand = receivedMessage.content.substr(1) // Remove the leading prefix (assuming the prefix is one character)
     let splitCommand = fullCommand.split(" ") // Split the message up in to pieces for each space
-    let primaryCommand = splitCommand[0] // The first word directly after the exclamation is the command
+    let primaryCommand = splitCommand[0] // The first word directly after the prefix is the command
     let arguments = splitCommand.slice(1) // All other words are arguments/parameters/options for the command
 
     console.log("Command received: " + primaryCommand)
     console.log("Arguments: " + arguments) // There may not be any arguments
 
     commands.doCommand(primaryCommand, receivedMessage, arguments)
-}
-
-// checks if users in database (TBD: add a cache to make it faster)
-// Add function to increase exp every message (cooldown?)
-function checkUser(receivedMessage) {
-    var database = new dbClient.Client({
-        connectionString: process.env.DATABASE_URL,
-        ssl: true,
-      });
-    database.connect();
-    var text = 'INSERT INTO "Users" (id, name, level, experience, sins) VALUES ($1, $2, 1, 0, 0) ON CONFLICT DO NOTHING RETURNING *;'
-    var values = [receivedMessage.author.id, receivedMessage.author.username]
-    database.query(text, values, (err, res) => {
-        if (err) {
-            console.log(err)
-            receivedMessage.channel.send("there has been an error, contact Master Khuro for help if thats the case <:SHWink:607346841964511264>")
-        }
-        for (let row of res.rows) {
-          console.log(JSON.stringify(row));
-        }
-        database.end();
-    });
-}
-
-//increaseExp Function
-function updateExp(receivedMessage, expIncrease) {
-    var database = new dbClient.Client({
-        connectionString: process.env.DATABASE_URL,
-        ssl: true,
-      });
-    database.connect();
-    var text = 'UPDATE "Users" SET experience = experience + $2 WHERE id = $1;'
-    var values = [receivedMessage.author.id, expIncrease]
-    database.query(text, values, (err, res) => {
-        if (err) {
-            console.log(err)
-            receivedMessage.channel.send("there has been an error, contact Master Khuro for help if thats the case <:SHWink:607346841964511264>")
-        }
-        for (let row of res.rows) {
-          console.log(JSON.stringify(row));
-        }
-        database.end();
-    });
 }
 
 client.login(process.env.BOT_TOKEN)

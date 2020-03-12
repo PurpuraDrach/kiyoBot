@@ -4,6 +4,7 @@ require("dotenv").config()
 
 module.exports.profileCommand = function(receivedMessage, arguments) {
 
+  // TODO add validation that 2nd argument is a ping
   var searchID = receivedMessage.author.id
   if (arguments.length > 0) {
     if (arguments[0].slice(2,3) == '!'){
@@ -13,6 +14,7 @@ module.exports.profileCommand = function(receivedMessage, arguments) {
     }
   }
 
+  // database connection
   var database = new Main.dbClient.Client ({
       connectionString: process.env.DATABASE_URL,
       ssl: true,
