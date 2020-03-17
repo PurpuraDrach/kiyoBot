@@ -1,5 +1,3 @@
-import { domainToASCII } from "url"
-
 // do the command
 const multiply = require('./multiply.ts')
 const help = require('./help.ts')
@@ -7,15 +5,15 @@ const profile = require('./profile.ts')
 const chicken = require('./chicken.ts')
 const daily = require('./daily.ts')
 
-module.exports.doCommand = function(primaryCommand, receivedMessage, arguments){
+module.exports.doCommand = function(primaryCommand, receivedMessage, inArguments){
     if (primaryCommand == "help") {
-      help.helpCommand(arguments, receivedMessage)
+      help.helpCommand(inArguments, receivedMessage)
   } else if (primaryCommand == "multiply") {
-      multiply.multiplyCommand(arguments, receivedMessage)
+      multiply.multiplyCommand(inArguments, receivedMessage)
   } else if (primaryCommand == "ping"){
       receivedMessage.channel.send("pong")
   } else if (primaryCommand == "profile"){
-      profile.profileCommand(receivedMessage, arguments)
+      profile.profileCommand(receivedMessage, inArguments)
   } else if (primaryCommand == "chicken"){
       chicken.chickenCommand(receivedMessage)
   } else if (primaryCommand == "daily"){

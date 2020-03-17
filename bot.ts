@@ -8,6 +8,7 @@ const commands = require('./commands/command.ts')
 const levelUp = require('./utils/profileLevel.ts')
 require("dotenv").config()
 
+// TODO: add some darn lore for the fun of it
 
 // readying the bot
 client.on('ready', msg => {
@@ -22,7 +23,12 @@ client.on('message', (receivedMessage) => {
         return
     }
     //bot commands process messages starting with prefix '.'
+    // TODO: make prefix a global variable? easy to change prefix if so 
     if (receivedMessage.content.startsWith(".")) {
+        processCommand(receivedMessage)
+    }
+    // Admin commands
+    else if (receivedMessage.content.startsWith("..")) {
         processCommand(receivedMessage)
     }
     // updates exp 
@@ -31,7 +37,6 @@ client.on('message', (receivedMessage) => {
 
 // splicing command and sending it to doCommand to be processed
 function processCommand(receivedMessage) {
-    levelUp.checkUser(receivedMessage)
     let fullCommand = receivedMessage.content.substr(1) // Remove the leading prefix (assuming the prefix is one character)
     let splitCommand = fullCommand.split(" ") // Split the message up in to pieces for each space
     let primaryCommand = splitCommand[0] // The first word directly after the prefix is the command

@@ -1,16 +1,22 @@
 // profile command
 var Main = require("../bot.ts")
+const profCreate = require('../utils/profileCreate.ts')
 require("dotenv").config()
 
 module.exports.profileCommand = function(receivedMessage, arguments) {
 
-  // TODO add validation that 2nd argument is a ping
   var searchID = receivedMessage.author.id
   if (arguments.length > 0) {
-    if (arguments[0].slice(2,3) == '!'){
+    
+    // profile create command 
+    if (arguments[0] == 'create') {
+      profCreate.createuser(receivedMessage);
+      receivedMessage.channel.send("Your profile has been created. You have been inducted.")
+      return
+    }
+    // extracting ID from ping if present
+    if (arguments[0].length == 22 && arguments[0].slice(0,3) == '<@!' && Number(arguments[0].slice(3,21))) {
       searchID = arguments[0].slice(3,21)
-    } else {
-      searchID = arguments[0].slice(2,20)
     }
   }
 
@@ -27,7 +33,7 @@ module.exports.profileCommand = function(receivedMessage, arguments) {
   database.query(text, values, (err, res) => {
     if (err) {
       console.log(err)
-      receivedMessage.channel.send("there has been an error, contact Master Khuro for help if thats the case <:SHWink:607346841964511264>")
+      receivedMessage.channel.send("there has been an error, contact Master Khuro for help if thats the case")
     } 
     
     else {
@@ -43,7 +49,7 @@ module.exports.profileCommand = function(receivedMessage, arguments) {
         receivedMessage.channel.send(profileEmbed)
       } else {
         // profile not found
-        receivedMessage.channel.send("Your profile doesnt exist yet.")
+        receivedMessage.channel.send("Your profile doesnt exist yet. Use 'profile create' to create a profile.")
       }
     }
     database.end();
