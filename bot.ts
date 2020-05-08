@@ -9,11 +9,12 @@ const levelUp = require('./utils/profileLevel.ts')
 require("dotenv").config()
 
 // TODO: add some darn lore for the fun of it
+// TODO: List of stuff to add into global variables: bot prefix, bot admin user IDs  
 
 // readying the bot
 client.on('ready', msg => {
   console.log("Connected as " + client.user.tag)
-  client.user.setActivity("Space bot o w o")
+  client.user.setActivity("Resuming the Stalking Trio's Activities")
 })
 
 // recieveing messages
@@ -22,22 +23,30 @@ client.on('message', (receivedMessage) => {
     if (receivedMessage.author == client.user) { 
         return
     }
+
+    // Admin commands
+    if (receivedMessage.content.startsWith("..") && receivedMessage.author.id == "212804944594599937") {
+        let commandAdminResults = processCommand(receivedMessage, "admin")
+        commands.doAdminCommand(commandAdminResults[0], receivedMessage, commandAdminResults[1])
+    }
     //bot commands process messages starting with prefix '.'
     // TODO: make prefix a global variable? easy to change prefix if so 
-    if (receivedMessage.content.startsWith(".")) {
-        processCommand(receivedMessage)
-    }
-    // Admin commands
-    else if (receivedMessage.content.startsWith("..")) {
-        processCommand(receivedMessage)
+    else if (receivedMessage.content.startsWith(".")) {
+        let commandResults = processCommand(receivedMessage,  "normal")
+        commands.doCommand(commandResults[0], receivedMessage, commandResults[1])
     }
     // updates exp 
     // levelUp.updateExp(receivedMessage, "10")
 })
 
 // splicing command and sending it to doCommand to be processed
-function processCommand(receivedMessage) {
+// Add admin commands by removing 2 dot prefix instead of single prefix. Need IF function to differ between normal and admin commands 
+function processCommand(receivedMessage, commandType) {
     let fullCommand = receivedMessage.content.substr(1) // Remove the leading prefix (assuming the prefix is one character)
+    if (commandType == "admin") {
+        fullCommand = receivedMessage.content.substr(2)
+    }
+
     let splitCommand = fullCommand.split(" ") // Split the message up in to pieces for each space
     let primaryCommand = splitCommand[0] // The first word directly after the prefix is the command
     let arguments = splitCommand.slice(1) // All other words are arguments/parameters/options for the command
@@ -45,7 +54,8 @@ function processCommand(receivedMessage) {
     console.log("Command received: " + primaryCommand)
     console.log("Arguments: " + arguments) // There may not be any arguments
 
-    commands.doCommand(primaryCommand, receivedMessage, arguments)
+    return [primaryCommand, arguments]
+
 }
 
 client.login(process.env.BOT_TOKEN)

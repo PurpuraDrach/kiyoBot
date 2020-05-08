@@ -5,6 +5,8 @@ const profile = require('./profile.ts')
 const chicken = require('./chicken.ts')
 const daily = require('./daily.ts')
 
+const databaseManagement = require('../utils/databaseManagement.ts')
+
 module.exports.doCommand = function(primaryCommand, receivedMessage, inArguments){
     if (primaryCommand == "help") {
       help.helpCommand(inArguments, receivedMessage)
@@ -18,7 +20,17 @@ module.exports.doCommand = function(primaryCommand, receivedMessage, inArguments
       chicken.chickenCommand(receivedMessage)
   } else if (primaryCommand == "daily"){
       daily.dailyCommand(receivedMessage)
-  } else{
+  } else {
       receivedMessage.channel.send("I don't understand the command. Try `.help`")
+  }
+}
+
+module.exports.doAdminCommand = function(primaryCommand, receivedMessage, inArguments) {
+    if (primaryCommand == "fetch") {
+      databaseManagement.fetchProfiles()
+  } else if (primaryCommand == "delete"){
+      databaseManagement.deleteProfile(inArguments[0])
+  } else {
+      receivedMessage.channel.send("Invalid Command.")
   }
 }
