@@ -4,6 +4,8 @@ require("dotenv").config()
 
 module.exports.dailyCommand = function(receivedMessage) {
 
+  // add a time limit to this thing
+
   var searchID = receivedMessage.author.id
   // database connection
   var database = new Main.dbClient.Client ({
