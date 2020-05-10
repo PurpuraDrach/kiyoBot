@@ -15,6 +15,8 @@ require("dotenv").config()
 client.on('ready', msg => {
   console.log("Connected as " + client.user.tag)
   client.user.setActivity("Resuming the Stalking Trio's Activities")
+//   client.user.setAvatar("https://i.imgur.com/L2AX0X4.jpg")
+//   client.user.setUsername("Kiyo")
 })
 
 // recieveing messages
@@ -35,8 +37,6 @@ client.on('message', (receivedMessage) => {
         let commandResults = processCommand(receivedMessage,  "normal")
         commands.doCommand(commandResults[0], receivedMessage, commandResults[1])
     }
-    // updates exp 
-    // levelUp.updateExp(receivedMessage, "10")
 })
 
 // splicing command and sending it to doCommand to be processed

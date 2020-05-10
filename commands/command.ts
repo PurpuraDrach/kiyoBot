@@ -3,6 +3,7 @@ const multiply = require('./multiply.ts')
 const help = require('./help.ts')
 const profile = require('./profile.ts')
 const chicken = require('./chicken.ts')
+const snipe = require('./snipe.ts')
 const daily = require('./daily.ts')
 
 const databaseManagement = require('../utils/databaseManagement.ts')
@@ -18,6 +19,8 @@ module.exports.doCommand = function(primaryCommand, receivedMessage, inArguments
       profile.profileCommand(receivedMessage, inArguments)
   } else if (primaryCommand == "chicken"){
       chicken.chickenCommand(receivedMessage)
+  } else if (primaryCommand == "snipe"){
+      snipe.snipeCommand(receivedMessage, inArguments)
   } else if (primaryCommand == "daily"){
       daily.dailyCommand(receivedMessage)
   } else {
