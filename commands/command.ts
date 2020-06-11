@@ -5,6 +5,7 @@ const profile = require('./profile.ts')
 const chicken = require('./chicken.ts')
 const snipe = require('./snipe.ts')
 const daily = require('./daily.ts')
+const echo = require('./echo.ts')
 
 const databaseManagement = require('../utils/databaseManagement.ts')
 
@@ -15,6 +16,8 @@ module.exports.doCommand = function(primaryCommand, receivedMessage, inArguments
       multiply.multiplyCommand(inArguments, receivedMessage)
   } else if (primaryCommand == "ping"){
       receivedMessage.channel.send("pong")
+  } else if (primaryCommand == "echo"){
+      echo.echoCommand(inArguments, receivedMessage)
   } else if (primaryCommand == "profile"){
       profile.profileCommand(receivedMessage, inArguments)
   } else if (primaryCommand == "chicken"){

@@ -4,7 +4,7 @@ require("dotenv").config()
 
 module.exports.dailyCommand = function(receivedMessage) {
 
-  // add a time limit to this thing
+  // add a true/false value for this that resets every day at 12 am melbourne time hehh
 
   var searchID = receivedMessage.author.id
   // database connection

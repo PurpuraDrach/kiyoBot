@@ -3,6 +3,7 @@ require("dotenv").config()
 
 // TODO: Auto-update profile function when username changes?
 // maybe check when a command is used?
+// send message if profile already exists?
 
 // creates User 
 module.exports.createUser = function(receivedMessage) {

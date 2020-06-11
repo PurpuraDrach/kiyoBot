@@ -25,7 +25,6 @@ client.on('message', (receivedMessage) => {
     if (receivedMessage.author == client.user) { 
         return
     }
-
     // Admin commands
     if (receivedMessage.content.startsWith("..") && receivedMessage.author.id == "212804944594599937") {
         let commandAdminResults = processCommand(receivedMessage, "admin")
@@ -40,7 +39,6 @@ client.on('message', (receivedMessage) => {
 })
 
 // splicing command and sending it to doCommand to be processed
-// Add admin commands by removing 2 dot prefix instead of single prefix. Need IF function to differ between normal and admin commands 
 function processCommand(receivedMessage, commandType) {
     let fullCommand = receivedMessage.content.substr(1) // Remove the leading prefix (assuming the prefix is one character)
     if (commandType == "admin") {
