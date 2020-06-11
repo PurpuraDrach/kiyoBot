@@ -26,7 +26,7 @@ client.on('message', (receivedMessage) => {
         return
     }
     // Admin commands
-    if (receivedMessage.content.startsWith("..") && receivedMessage.author.id == "212804944594599937") {
+    if (receivedMessage.content.startsWith("..") && receivedMessage.author.id == process.env.OWNER_ID) {
         let commandAdminResults = processCommand(receivedMessage, "admin")
         commands.doAdminCommand(commandAdminResults[0], receivedMessage, commandAdminResults[1])
     }
@@ -41,6 +41,8 @@ client.on('message', (receivedMessage) => {
 // splicing command and sending it to doCommand to be processed
 function processCommand(receivedMessage, commandType) {
     let fullCommand = receivedMessage.content.substr(1) // Remove the leading prefix (assuming the prefix is one character)
+
+    // placeholder, no actual admin commands yet
     if (commandType == "admin") {
         fullCommand = receivedMessage.content.substr(2)
     }
