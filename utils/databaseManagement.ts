@@ -36,8 +36,51 @@ module.exports.deleteProfile = function(userID) {
   database.query(text, values, (err, res) => {
       if (err) {
           console.log(err)
+      } else {
+        console.log("User "+userID+" has been deleted from profile")
       }
-      console.log("User "+userID+" has been deleted from profile")
+      database.end();
+  });
+}
+
+
+// for once only queries
+module.exports.addColumn = function() {
+  var database = new botDataM.dbClient.Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: true,
+    });
+  database.connect();
+
+  var text = 'ALTER TABLE "Users" ADD DailyAvailable BOOLEAN;'
+
+  database.query(text, [], (err, res) => {
+      if (err) {
+          console.log(err)
+      } else {
+        console.log("Added new Column.")
+      }
+      database.end();
+  });
+}
+
+// resets all dailys back to true
+module.exports.setDaily = function() {
+  var database = new botDataM.dbClient.Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: true,
+    });
+  database.connect();
+
+  var text = 'UPDATE "Users" SET DailyAvailable = TRUE'
+
+  database.query(text, [], (err, res) => {
+      if (err) {
+          console.log(err)
+      }
+      else {
+        console.log("Reset Dailys")
+      }
       database.end();
   });
 }

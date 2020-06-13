@@ -36,6 +36,11 @@ module.exports.doAdminCommand = function(primaryCommand, receivedMessage, inArgu
       databaseManagement.fetchProfiles()
   } else if (primaryCommand == "delete"){
       databaseManagement.deleteProfile(inArguments[0])
+  } else if (primaryCommand == "addColumn"){
+      databaseManagement.addColumn()
+  } else if (primaryCommand == "resetDaily"){
+    databaseManagement.setDaily()
+    receivedMessage.channel.send("All Dailys Reset")
   } else {
       receivedMessage.channel.send("Invalid Command.")
   }

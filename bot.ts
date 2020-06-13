@@ -42,7 +42,6 @@ client.on('message', (receivedMessage) => {
 function processCommand(receivedMessage, commandType) {
     let fullCommand = receivedMessage.content.substr(1) // Remove the leading prefix (assuming the prefix is one character)
 
-    // placeholder, no actual admin commands yet
     if (commandType == "admin") {
         fullCommand = receivedMessage.content.substr(2)
     }

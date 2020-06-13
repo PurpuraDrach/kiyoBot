@@ -57,11 +57,11 @@ module.exports.profileCommand = function(receivedMessage, arguments) {
           { name: "Sins", value: res.rows[0].sins},
           { name: "\u200B", value: "One day you can describe yourself here. Unfortunately not this time around, blame your E rank Luck"},
         )
-
         .setTimestamp()
         .setFooter("I'll be here watching you, Anchin.", 'https://i.imgur.com/L2AX0X4.jpg')
         .setImage('https://i.imgur.com/uUnVWDt.jpg')
 
+        // is there a way to code it so it doesnt require setTimeout?
         setTimeout(function(){receivedMessage.channel.send(profileEmbed)}, 500)
       } else {
         // profile not found

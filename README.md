@@ -9,9 +9,10 @@ Currently Taking the appearance of Kiyohime.
 `node bot.ts`
 
 ## Commands
+chicken - enjoy ur serving of delicious chicken  
+daily - get ur daily goods yum yum (in progress)  
+echo - echo whatever you said after  
 help - display help for the sinBot commands  
 multiple - Multiple numbers together  
 ping - pong  
-chicken - enjoy ur serving of delicious chicke  
 profile - fetch your profile  
-daily - get ur daily goods yum yum (in progress)  
