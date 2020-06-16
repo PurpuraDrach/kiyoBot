@@ -28,6 +28,7 @@ module.exports.dailyCommand = function(receivedMessage) {
     if (err) {
       console.log(err)
       receivedMessage.channel.send("There was an error in collecting dailys, please ask master Khuro for help.")
+      database.end()
     } else {
         if (JSON.stringify(res.rows[0].dailyavailable) == "true") {
           // insert second query to increase by 500, this is async
@@ -37,13 +38,14 @@ module.exports.dailyCommand = function(receivedMessage) {
             } else {
               receivedMessage.channel.send("you have collected 500 daily sins")
             }
+            database.end()
+            console.log("END")
           })
         } else {
           receivedMessage.channel.send("You have already recieved your dailys today.")
+          database.end()
         }
     }
-    console.log("here")
     // need timeout, else database function is killed before the second query is executed
-    setTimeout(function(){database.end()}, 2000)
   })
 }

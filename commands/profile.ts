@@ -10,7 +10,7 @@ module.exports.profileCommand = function(receivedMessage, arguments) {
     
     // profile create command 
     if (arguments[0] == 'create') {
-      profCreate.createuser(receivedMessage);
+      profCreate.createuser(receivedMessage)
       receivedMessage.channel.send("Your profile has been created. You have been inducted.")
       return
     }
@@ -24,8 +24,8 @@ module.exports.profileCommand = function(receivedMessage, arguments) {
   var database = new Main.dbClient.Client ({
       connectionString: process.env.DATABASE_URL,
       ssl: true,
-    });
-  database.connect();
+    })
+  database.connect()
 
   // query 
   var text = 'SELECT * from "Users" u WHERE u.id = $1;'
@@ -38,36 +38,38 @@ module.exports.profileCommand = function(receivedMessage, arguments) {
     
     else {
       if (res.rows[0]) {
-        // create embed to display info
-        const profileEmbed = new Main.Discord.MessageEmbed();
-        profileEmbed.setTitle(res.rows[0].name)
-        profileEmbed.setColor('#0099ff')
-        profileEmbed.setDescription("One day you shall be able to set a title here. Just not today.")
-
-        // darn avatar URL, cause its a promist have to delay the send profile by 2 seconds
-        // Find some other darn way to fix this, I THOUGHT IT EXECUTES LINEAR NOT PARALLEL
-        receivedMessage.guild.members.fetch(searchID)
-          .then((value) => {profileEmbed.setThumbnail(value.user.avatarURL())})
-          .catch(console.error);
-
-        const expBar = String(Number(res.rows[0].experience)%1000) + "/1000"
-
-        profileEmbed.addFields(
-          { name: "Level", value: res.rows[0].level + "  (" + expBar + ")"},
-          { name: "Sins", value: res.rows[0].sins},
-          { name: "\u200B", value: "One day you can describe yourself here. Unfortunately not this time around, blame your E rank Luck"},
-        )
-        .setTimestamp()
-        .setFooter("I'll be here watching you, Anchin.", 'https://i.imgur.com/L2AX0X4.jpg')
-        .setImage('https://i.imgur.com/uUnVWDt.jpg')
-
-        // is there a way to code it so it doesnt require setTimeout?
-        setTimeout(function(){receivedMessage.channel.send(profileEmbed)}, 500)
+        createProfileEmbed(receivedMessage, searchID, res)
       } else {
         // profile not found
         receivedMessage.channel.send("Your profile doesnt exist yet. Use 'profile create' to create a profile.")
       }
     }
-    database.end();
+    database.end()
   });
+}
+
+
+
+
+async function createProfileEmbed(receivedMessage, searchID, res) {
+  const profileEmbed = new Main.Discord.MessageEmbed()
+  const expBar = String(Number(res.rows[0].experience)%1000) + "/1000"
+
+  profileEmbed.setTitle(res.rows[0].name)
+  profileEmbed.setColor('#0099ff')
+  profileEmbed.setDescription("One day you shall be able to set a title here. Just not today.")
+  profileEmbed.addFields(
+    { name: "Level", value: res.rows[0].level + "  (" + expBar + ")"},
+    { name: "Sins", value: res.rows[0].sins},
+    { name: "\u200B", value: "One day you can describe yourself here. Unfortunately not this time around, blame your E rank Luck"},
+  )
+  profileEmbed.setTimestamp()
+  profileEmbed.setFooter("I'll be here watching you, Anchin.", 'https://i.imgur.com/L2AX0X4.jpg')
+  profileEmbed.setImage('https://i.imgur.com/uUnVWDt.jpg') // image not showing, is this a problem with discord itself?
+
+  await receivedMessage.guild.members.fetch(searchID)
+    .then((value) => {profileEmbed.setThumbnail(value.user.avatarURL())})
+    .catch(console.error)
+    //.then(function() {receivedMessage.channel.send(profileEmbed)})
+  receivedMessage.channel.send(profileEmbed)
 }
