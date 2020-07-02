@@ -13,7 +13,7 @@ module.exports.createUser = function(receivedMessage) {
     });
   database.connect();
 
-  var text = 'INSERT INTO "Users" (id, name, level, experience, sins) VALUES ($1, $2, 1, 0, 0) ON CONFLICT DO NOTHING RETURNING *;'
+  var text = 'INSERT INTO "Users" (id, name, level, experience, quartz) VALUES ($1, $2, 1, 0, 0) ON CONFLICT DO NOTHING RETURNING *;'
   var values = [receivedMessage.author.id, receivedMessage.author.username]
 
   database.query(text, values, (err, res) => {

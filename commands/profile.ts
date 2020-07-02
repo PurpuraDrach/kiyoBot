@@ -60,7 +60,7 @@ async function createProfileEmbed(receivedMessage, searchID, res) {
   profileEmbed.setDescription("One day you shall be able to set a title here. Just not today.")
   profileEmbed.addFields(
     { name: "Level", value: res.rows[0].level + "  (" + expBar + ")"},
-    { name: "Sins", value: res.rows[0].sins},
+    { name: "Quartz", value: res.rows[0].quartz},
     { name: "\u200B", value: "One day you can describe yourself here. Unfortunately not this time around, blame your E rank Luck"},
   )
   profileEmbed.setTimestamp()

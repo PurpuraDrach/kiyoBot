@@ -1,7 +1,7 @@
 {
-  "name": "sinbot",
+  "name": "kiyobot",
   "version": "1.0.0",
-  "description": "sinBot the bot",
+  "description": "kiyoBot the bot",
   "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PurpuraDrach/sinBot.git"
+    "url": "git+https://github.com/PurpuraDrach/kiyoBot.git"
   },
   "author": "PupuraDrach",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/PurpuraDrach/sinBot/issues"
+    "url": "https://github.com/PurpuraDrach/kiyoBot/issues"
   },
-  "homepage": "https://github.com/PurpuraDrach/sinBot#readme",
+  "homepage": "https://github.com/PurpuraDrach/kiyoBot#readme",
   "dependencies": {
     "@types/node": "^12.7.1",
     "discord.js": "^12.0.2",

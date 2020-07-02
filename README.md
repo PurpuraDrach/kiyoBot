@@ -1,6 +1,6 @@
 # kiyoBot
 The Official Kiyobot  
-Can you feel your sins crawling up your back?
+One of the stalker trio
 
 "I'm watching you, Anchin."
 
@@ -11,7 +11,7 @@ Can you feel your sins crawling up your back?
 chicken - enjoy ur serving of delicious chicken  
 daily - get ur daily goods yum yum (in progress)  
 echo - echo whatever you said after  
-help - display help for the sinBot commands  
+help - display help for the kiyoBot commands  
 multiple - Multiple numbers together  
 ping - pong  
 profile - fetch your profile  

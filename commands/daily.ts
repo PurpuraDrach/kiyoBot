@@ -20,7 +20,7 @@ module.exports.dailyCommand = function(receivedMessage) {
 
   // fetching if daily is available
   var queryText = 'SELECT DailyAvailable FROM "Users" WHERE id = $1;'
-  var updateQuery = 'UPDATE "Users" SET sins = sins + 500 WHERE id = $1;'
+  var updateQuery = 'UPDATE "Users" SET quartz = quartz + 500 WHERE id = $1;'
   const values = [searchID]
 
   // this section is async, maybe use a promise instead of timeout
@@ -36,7 +36,7 @@ module.exports.dailyCommand = function(receivedMessage) {
             if (err2) {
               console.log(err2)
             } else {
-              receivedMessage.channel.send("you have collected 500 daily sins")
+              receivedMessage.channel.send("you have collected 500 daily quartz anchin.")
             }
             database.end()
             console.log("END")
