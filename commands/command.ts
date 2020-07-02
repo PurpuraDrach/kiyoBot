@@ -39,8 +39,7 @@ module.exports.doAdminCommand = function(primaryCommand, receivedMessage, inArgu
   } else if (primaryCommand == "addColumn"){
       databaseManagement.addColumn()
   } else if (primaryCommand == "resetDaily"){
-    databaseManagement.setDaily()
-    receivedMessage.channel.send("All Dailys Reset")
+    databaseManagement.setDaily(receivedMessage)
   } else {
       receivedMessage.channel.send("Invalid Command.")
   }

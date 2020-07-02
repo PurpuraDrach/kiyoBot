@@ -65,7 +65,7 @@ module.exports.addColumn = function() {
 }
 
 // resets all dailys back to true
-module.exports.setDaily = function() {
+module.exports.setDaily = function(receivedMessage) {
   var database = new botDataM.dbClient.Client({
       connectionString: process.env.DATABASE_URL,
       ssl: true,
@@ -80,6 +80,7 @@ module.exports.setDaily = function() {
       }
       else {
         console.log("Reset Dailys")
+        receivedMessage.channel.send("All Dailys Reset")
       }
       database.end();
   });

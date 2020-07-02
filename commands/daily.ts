@@ -19,8 +19,9 @@ module.exports.dailyCommand = function(receivedMessage) {
   // })
 
   // fetching if daily is available
-  var queryText = 'SELECT DailyAvailable FROM "Users" WHERE id = $1;'
-  var updateQuery = 'UPDATE "Users" SET quartz = quartz + 500 WHERE id = $1;'
+  const queryText = 'SELECT DailyAvailable FROM "Users" WHERE id = $1;'
+  const updateQuery = 'UPDATE "Users" SET quartz = quartz + 500 WHERE id = $1;'
+  const udpateFalse = 'UPDATE "Users" SET dailyavailable = FALSE WHERE id = $1;'
   const values = [searchID]
 
   // this section is async, maybe use a promise instead of timeout
@@ -31,14 +32,25 @@ module.exports.dailyCommand = function(receivedMessage) {
       database.end()
     } else {
         if (JSON.stringify(res.rows[0].dailyavailable) == "true") {
-          // insert second query to increase by 500, this is async
+          // insert second query to increase by 500, this is async outside the braces
           database.query(updateQuery, values, (err2, res2) => {
             if (err2) {
               console.log(err2)
+              receivedMessage.channel.send("There was an error in collecting quartz, please ask master Khuro for help.")
+              database.end()
             } else {
               receivedMessage.channel.send("you have collected 500 daily quartz anchin.")
+              // insert third nested query to change daily available to false
+              database.query(udpateFalse, values, (err3, res3) => {
+                if (err3) {
+                  console.log(err3)
+                  receivedMessage.channel.send("There was an error in collecting quartz, please ask master Khuro for help.")
+                } else {
+                  console.log("Daily status updated")
+                }
+                database.end()
+              })
             }
-            database.end()
             console.log("END")
           })
         } else {
