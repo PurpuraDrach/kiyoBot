@@ -1,8 +1,7 @@
-# sinBot
-The Official Sinbot  
+# kiyoBot
+The Official Kiyobot  
 Can you feel your sins crawling up your back?
 
-Currently Taking the appearance of Kiyohime.  
 "I'm watching you, Anchin."
 
 ## How to run
