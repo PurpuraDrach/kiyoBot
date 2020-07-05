@@ -1,4 +1,4 @@
-var Main = require("../bot.ts")
+var Main = require("../bot")
 const snipeImages = [
   'https://i.imgur.com/f856FLU.gif',
   'https://i.imgur.com/UcINxLl.gif',
@@ -8,7 +8,7 @@ const snipeImages = [
 
 // snipe someone or Kiyo snipes you
 
-module.exports.snipeCommand = function(receivedMessage, arguments) {
+module.exports.snipeCommand = function(receivedMessage: any, inArguments: string[]) {
   const snipeEmbed = new Main.Discord.MessageEmbed();
   snipeEmbed.setImage(snipeImages[Math.floor(Math.random() + snipeImages.length)])
   snipeEmbed.setFooter("I'll be here watching you, Anchin.", 'https://i.imgur.com/L2AX0X4.jpg')
@@ -18,10 +18,10 @@ module.exports.snipeCommand = function(receivedMessage, arguments) {
   var targetID = ''
 
   // check if target exists
-  if (arguments.length > 0) {
+  if (inArguments.length > 0) {
     // extract ping
-    if (arguments[0].length == 22 && arguments[0].slice(0,3) == '<@!' && Number(arguments[0].slice(3,21))) {
-      targetID = arguments[0].slice(3,21)
+    if (inArguments[0].length == 22 && inArguments[0].slice(0,3) == '<@!' && Number(inArguments[0].slice(3,21))) {
+      targetID = inArguments[0].slice(3,21)
     }
   }
 

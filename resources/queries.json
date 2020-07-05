@@ -1,9 +1,0 @@
-    
-{
-  "Select": {
-    "all": {
-      "query": "SELECT * FROM 'Users';",
-      "values": [""]
-    }
-  }
-}

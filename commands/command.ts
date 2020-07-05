@@ -1,15 +1,15 @@
 // do the command
-const multiply = require('./multiply.ts')
-const help = require('./help.ts')
-const profile = require('./profile.ts')
-const chicken = require('./chicken.ts')
-const snipe = require('./snipe.ts')
-const daily = require('./daily.ts')
-const echo = require('./echo.ts')
+const multiply = require('./multiply')
+const help = require('./help')
+const profile = require('./profile')
+const chicken = require('./chicken')
+const snipe = require('./snipe')
+const daily = require('./daily')
+const echo = require('./echo')
 
-const databaseManagement = require('../utils/databaseManagement.ts')
+const databaseManagement = require('../utils/databaseManagement')
 
-module.exports.doCommand = function(primaryCommand, receivedMessage, inArguments){
+module.exports.doCommand = function(primaryCommand: string, receivedMessage: any, inArguments: string[]){
     if (primaryCommand == "help") {
       help.helpCommand(inArguments, receivedMessage)
   } else if (primaryCommand == "multiply") {
@@ -31,7 +31,7 @@ module.exports.doCommand = function(primaryCommand, receivedMessage, inArguments
   }
 }
 
-module.exports.doAdminCommand = function(primaryCommand, receivedMessage, inArguments) {
+module.exports.doAdminCommand = function(primaryCommand: string, receivedMessage: any, inArguments: string[]) {
     if (primaryCommand == "fetch") {
       databaseManagement.fetchProfiles()
   } else if (primaryCommand == "delete"){

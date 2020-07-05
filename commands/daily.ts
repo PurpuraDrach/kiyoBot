@@ -1,8 +1,8 @@
 // daily command
-var Main = require("../bot.ts")
+var Main = require("../bot")
 require("dotenv").config()
 
-module.exports.dailyCommand = function(receivedMessage) {
+module.exports.dailyCommand = function(receivedMessage: any) {
 
   // add a true/false value for this that resets every day at 12 am melbourne time hehh
 
@@ -25,7 +25,7 @@ module.exports.dailyCommand = function(receivedMessage) {
   const values = [searchID]
 
   // this section is async, maybe use a promise instead of timeout
-  database.query(queryText, values, (err, res) => {
+  database.query(queryText, values, (err: Error, res: any) => {
     if (err) {
       console.log(err)
       receivedMessage.channel.send("There was an error in collecting dailys, please ask master Khuro for help.")
@@ -33,7 +33,7 @@ module.exports.dailyCommand = function(receivedMessage) {
     } else {
         if (JSON.stringify(res.rows[0].dailyavailable) == "true") {
           // insert second query to increase by 500, this is async outside the braces
-          database.query(updateQuery, values, (err2, res2) => {
+          database.query(updateQuery, values, (err2: Error, res2: any) => {
             if (err2) {
               console.log(err2)
               receivedMessage.channel.send("There was an error in collecting quartz, please ask master Khuro for help.")
@@ -41,7 +41,7 @@ module.exports.dailyCommand = function(receivedMessage) {
             } else {
               receivedMessage.channel.send("you have collected 500 daily quartz anchin.")
               // insert third nested query to change daily available to false
-              database.query(udpateFalse, values, (err3, res3) => {
+              database.query(udpateFalse, values, (err3: Error, res3: any) => {
                 if (err3) {
                   console.log(err3)
                   receivedMessage.channel.send("There was an error in collecting quartz, please ask master Khuro for help.")

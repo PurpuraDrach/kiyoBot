@@ -5,7 +5,9 @@ One of the stalker trio
 "I'm watching you, Anchin."
 
 ## How to run
-`node bot.ts`
+`npm run tsc` - compiles the app
+`npm run dev` - runs dev environment
+`npm run prod` - compiles and runs prod mode
 
 ## Commands
 chicken - enjoy ur serving of delicious chicken  

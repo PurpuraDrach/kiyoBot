@@ -1,22 +1,22 @@
 // profile command
-var Main = require("../bot.ts")
-const profCreate = require('../utils/profileCreate.ts')
+var Main = require("../bot")
+const profCreate = require('../utils/profileCreate')
 require("dotenv").config()
 
-module.exports.profileCommand = function(receivedMessage, arguments) {
+module.exports.profileCommand = function(receivedMessage: any, inArguments: string[]) {
 
   var searchID = receivedMessage.author.id
-  if (arguments.length > 0) {
+  if (inArguments.length > 0) {
     
     // profile create command 
-    if (arguments[0] == 'create') {
+    if (inArguments[0] == 'create') {
       profCreate.createuser(receivedMessage)
       receivedMessage.channel.send("Your profile has been created. You have been inducted.")
       return
     }
     // extracting ID from ping if present
-    if (arguments[0].length == 22 && arguments[0].slice(0,3) == '<@!' && Number(arguments[0].slice(3,21))) {
-      searchID = arguments[0].slice(3,21)
+    if (inArguments[0].length == 22 && inArguments[0].slice(0,3) == '<@!' && Number(inArguments[0].slice(3,21))) {
+      searchID = inArguments[0].slice(3,21)
     }
   }
 
@@ -30,7 +30,7 @@ module.exports.profileCommand = function(receivedMessage, arguments) {
   // query 
   var text = 'SELECT * from "Users" u WHERE u.id = $1;'
   var values = [searchID]
-  database.query(text, values, (err, res) => {
+  database.query(text, values, (err: Error, res: any) => {
     if (err) {
       console.log(err)
       receivedMessage.channel.send("there has been an error, contact Master Khuro for help if thats the case")
@@ -51,7 +51,7 @@ module.exports.profileCommand = function(receivedMessage, arguments) {
 
 
 
-async function createProfileEmbed(receivedMessage, searchID, res) {
+async function createProfileEmbed(receivedMessage: any, searchID: string, res: any) {
   const profileEmbed = new Main.Discord.MessageEmbed()
   const expBar = String(Number(res.rows[0].experience)%1000) + "/1000"
 
@@ -68,7 +68,7 @@ async function createProfileEmbed(receivedMessage, searchID, res) {
   profileEmbed.setImage('https://i.imgur.com/uUnVWDt.jpg') // image not showing, is this a problem with discord itself?
 
   await receivedMessage.guild.members.fetch(searchID)
-    .then((value) => {profileEmbed.setThumbnail(value.user.avatarURL())})
+    .then((value: any) => {profileEmbed.setThumbnail(value.user.avatarURL())})
     .catch(console.error)
     //.then(function() {receivedMessage.channel.send(profileEmbed)})
   receivedMessage.channel.send(profileEmbed)

@@ -1,4 +1,4 @@
-const botDataM = require('../bot.ts')
+const botDataM = require('../bot')
 require("dotenv").config()
 
 // change the console logs to DMs? for the ease of monitoring the admin commands of course 
@@ -12,7 +12,7 @@ module.exports.fetchProfiles = function() {
 
   var text = 'SELECT * FROM "Users";'
 
-  database.query(text, [], (err, res) => {
+  database.query(text, [], (err: Error, res: any) => {
       if (err) {
           console.log(err)
       }
@@ -23,7 +23,7 @@ module.exports.fetchProfiles = function() {
   });
 }
 
-module.exports.deleteProfile = function(userID) {
+module.exports.deleteProfile = function(userID: string) {
   var database = new botDataM.dbClient.Client({
       connectionString: process.env.DATABASE_URL,
       ssl: true,
@@ -33,7 +33,7 @@ module.exports.deleteProfile = function(userID) {
   var text = 'DELETE from "Users" u WHERE u.id = $1;'
   var values = [userID]
 
-  database.query(text, values, (err, res) => {
+  database.query(text, values, (err: Error, res: any) => {
       if (err) {
           console.log(err)
       } else {
@@ -54,7 +54,7 @@ module.exports.addColumn = function() {
 
   var text = 'ALTER TABLE "Users" ADD DailyAvailable BOOLEAN;'
 
-  database.query(text, [], (err, res) => {
+  database.query(text, [], (err: Error, res: any) => {
       if (err) {
           console.log(err)
       } else {
@@ -65,7 +65,7 @@ module.exports.addColumn = function() {
 }
 
 // resets all dailys back to true
-module.exports.setDaily = function(receivedMessage) {
+module.exports.setDaily = function(receivedMessage: any) {
   var database = new botDataM.dbClient.Client({
       connectionString: process.env.DATABASE_URL,
       ssl: true,
@@ -74,7 +74,7 @@ module.exports.setDaily = function(receivedMessage) {
 
   var text = 'UPDATE "Users" SET DailyAvailable = TRUE'
 
-  database.query(text, [], (err, res) => {
+  database.query(text, [], (err: Error, res: any) => {
       if (err) {
           console.log(err)
       }
