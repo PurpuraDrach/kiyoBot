@@ -2,6 +2,8 @@
 The Official Kiyobot  
 One of the stalker trio
 
+![Kiyo Picture](https://i.imgur.com/uUnVWDt.jpg)
+
 "I'm watching you, Anchin."
 
 ## How to run
