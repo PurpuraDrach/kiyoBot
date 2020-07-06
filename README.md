@@ -9,6 +9,8 @@ One of the stalker trio
 `npm run dev` - runs dev environment
 `npm run prod` - compiles and runs prod mode
 
+Don't forget to run npm install to install the node modules first
+
 ## Commands
 chicken - enjoy ur serving of delicious chicken  
 daily - get ur daily goods yum yum (in progress)  
