@@ -22,8 +22,11 @@ module.exports.createUser = function(receivedMessage: any) {
           receivedMessage.channel.send("there has been an error, contact Master Khuro for help if thats the case")
       }
       for (let row of res.rows) {
-        console.log(JSON.stringify(row));
+        receivedMessage.channel.send("Your profile has been created. You have been inducted.")
+        database.end();
+        return
       }
+      receivedMessage.channel.send("Your profile already exists.")
       database.end();
   });
 }

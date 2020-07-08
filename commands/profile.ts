@@ -10,8 +10,7 @@ module.exports.profileCommand = function(receivedMessage: any, inArguments: stri
     
     // profile create command 
     if (inArguments[0] == 'create') {
-      profCreate.createuser(receivedMessage)
-      receivedMessage.channel.send("Your profile has been created. You have been inducted.")
+      profCreate.createUser(receivedMessage)
       return
     }
     // extracting ID from ping if present
