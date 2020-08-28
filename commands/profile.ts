@@ -32,10 +32,8 @@ module.exports.profileCommand = function(receivedMessage: any, inArguments: stri
   database.query(text, values, (err: Error, res: any) => {
     if (err) {
       console.log(err)
-      receivedMessage.channel.send("there has been an error, contact Master Khuro for help if thats the case")
-    } 
-    
-    else {
+      receivedMessage.channel.send("there has been an error, contact an Admin for help.")
+    } else {
       if (res.rows[0]) {
         createProfileEmbed(receivedMessage, searchID, res)
       } else {
@@ -56,11 +54,11 @@ async function createProfileEmbed(receivedMessage: any, searchID: string, res: a
 
   profileEmbed.setTitle(res.rows[0].name)
   profileEmbed.setColor('#0099ff')
-  profileEmbed.setDescription("One day you shall be able to set a title here. Just not today.")
+  profileEmbed.setDescription(res.rows[0].title)
   profileEmbed.addFields(
     { name: "Level", value: res.rows[0].level + "  (" + expBar + ")"},
     { name: "Quartz", value: res.rows[0].quartz},
-    { name: "\u200B", value: "One day you can describe yourself here. Unfortunately not this time around, blame your E rank Luck"},
+    { name: "\u200B", value: res.rows[0].summary},
   )
   profileEmbed.setTimestamp()
   profileEmbed.setFooter("I'll be here watching you, Anchin.", 'https://i.imgur.com/L2AX0X4.jpg')

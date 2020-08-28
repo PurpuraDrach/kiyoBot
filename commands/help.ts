@@ -40,7 +40,8 @@ module.exports.helpCommand = function(inArguments: string[], receivedMessage: an
 }
 
 var helpJson = {
-  "commands": [{
+  "commands": [
+    {
       "command": "chicken",
       "description": "It gives chicken. What else is there to say?",
       "example": "Pretty self explanatory, I'm sure you don't need an example.",
@@ -77,9 +78,22 @@ var helpJson = {
       "syntax": ".profile <ping>"
     },
     {
+      "command": "setsummary",
+      "description": "Use this command to set your summary in your profile. I wanna know about you, anchin.",
+      "example": ".setsummary I am a good person. Maybe. Possibly.",
+      "syntax": ".setsummary <description/sumamry>"
+    },
+    {
+      "command": "settitle",
+      "description": "Use this command to show set your title in your profile.",
+      "example": ".setittle The Boss",
+      "syntax": ".settitle <title>"
+    },
+    {
       "command": "snipe",
       "description": "Use this command to snipe others...or yourself, either ways kiyo is happy to oblige.",
       "example": ".snipe @Bakarina",
       "syntax": "`.snipe <pings>"
-  }]
+    }
+  ]
 }

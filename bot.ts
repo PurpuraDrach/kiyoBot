@@ -47,13 +47,13 @@ function processCommand(receivedMessage: any, commandType: string) {
     }
 
     let splitCommand = fullCommand.split(" ") // Split the message up in to pieces for each space
-    let primaryCommand = splitCommand[0] // The first word directly after the prefix is the command
-    let commandArguments = splitCommand.slice(1) // All other words are arguments/parameters/options for the command
+    let primaryCommand: string = splitCommand[0] // The first word directly after the prefix is the command
+    let commandArguments: string[] = splitCommand.slice(1) // All other words are arguments/parameters/options for the command
 
     console.log("Command received: " + primaryCommand)
     console.log("Arguments: " + commandArguments) // There may not be any arguments
 
-    return [primaryCommand, commandArguments]
+    return [primaryCommand.toLowerCase(), commandArguments]  // only primary command is non-case sensetive
 
 }
 

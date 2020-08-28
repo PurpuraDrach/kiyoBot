@@ -18,7 +18,7 @@ module.exports.updateExp = function(receivedMessage: any, expIncrease: string) {
   database.query(text, values, (err: Error, res: any) => {
       if (err) {
           console.log(err)
-          receivedMessage.channel.send("there has been an error, contact Master Khuro for help if thats the case")
+          receivedMessage.channel.send("there has been an error, contact an Admin for help.")
       }
       for (let row of res.rows) {
         console.log(JSON.stringify(row));
