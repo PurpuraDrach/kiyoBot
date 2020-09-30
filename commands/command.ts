@@ -7,6 +7,7 @@ const chicken = require('./chicken')
 const snipe = require('./snipe')
 const daily = require('./daily')
 const echo = require('./echo')
+const bibleVerse = require('./bibleVerse')
 
 const databaseManagement = require('../utils/databaseManagement')
 
@@ -24,13 +25,15 @@ module.exports.doCommand = function(primaryCommand: string, receivedMessage: any
   } else if (primaryCommand == "chicken"){
       chicken.chickenCommand(receivedMessage)
   } else if (primaryCommand == "setsummary"){
-    profileDetails.profDetailsCommand(receivedMessage, "summary", inArguments)
+      profileDetails.profDetailsCommand(receivedMessage, "summary", inArguments)
   } else if (primaryCommand == "settitle"){
-    profileDetails.profDetailsCommand(receivedMessage, "title", inArguments)
+      profileDetails.profDetailsCommand(receivedMessage, "title", inArguments)
   } else if (primaryCommand == "snipe"){
       snipe.snipeCommand(receivedMessage, inArguments)
   } else if (primaryCommand == "daily"){
       daily.dailyCommand(receivedMessage)
+  } else if (primaryCommand == "verse"){
+      bibleVerse.bibleVerseCommand(receivedMessage)
   } else {
       receivedMessage.channel.send("I don't understand the command. Try `.help`")
   }
