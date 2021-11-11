@@ -17,6 +17,8 @@ client.on('ready', () => {
   client.user.setActivity("Resuming the Stalking Trio's Activities")
 //   client.user.setAvatar("https://i.imgur.com/L2AX0X4.jpg")
 //   client.user.setUsername("Kiyo")
+  client.user.setAvatar("https://i.imgur.com/sl4ed8w.png")
+  client.user.setUsername("Hyuni bot | .")
 })
 
 // recieveing messages
