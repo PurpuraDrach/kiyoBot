@@ -1,1 +1,1 @@
-worker: node bot.ts
+worker: tsc && node ./build/bot.js

@@ -14,10 +14,10 @@ require("dotenv").config()
 // readying the bot
 client.on('ready', () => {
   console.log("Connected as " + client.user.tag)
-  client.user.setActivity("Resuming the Stalking Trio's Activities")
+  client.user.setActivity("Deez Nuts")
 //   client.user.setAvatar("https://i.imgur.com/L2AX0X4.jpg")
 //   client.user.setUsername("Kiyo")
-  client.user.setAvatar("https://i.imgur.com/sl4ed8w.png")
+  client.user.setAvatar("https://i.imgur.com/sl4ed8w.png") // make a global variable for this image to use in embed
   client.user.setUsername("Hyuni bot | .")
 })
 

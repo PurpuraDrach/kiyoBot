@@ -11,7 +11,7 @@ const snipeImages = [
 module.exports.snipeCommand = function(receivedMessage: any, inArguments: string[]) {
   const snipeEmbed = new Main.Discord.MessageEmbed();
   snipeEmbed.setImage(snipeImages[Math.floor(Math.random() + snipeImages.length)])
-  snipeEmbed.setFooter("I'll be here watching you, Anchin.", 'https://i.imgur.com/L2AX0X4.jpg')
+  snipeEmbed.setFooter("Hyuni deez nuts", 'https://i.imgur.com/sl4ed8w.png')
   snipeEmbed.setImage(snipeImages[Math.floor(Math.random() * snipeImages.length)])
 
   var authorID = receivedMessage.author.id
@@ -26,7 +26,7 @@ module.exports.snipeCommand = function(receivedMessage: any, inArguments: string
   }
 
   if (targetID == '') {
-    snipeEmbed.setDescription("<@"+ authorID +'> scored was headshot by Kiyohime. "Anchin, are you cheating on me?"')
+    snipeEmbed.setDescription("<@"+ authorID +'> scored was headshot by Hyuni. "HEADSHOT, lez go!"')
   } else {  
     snipeEmbed.setDescription("<@"+ authorID +"> scored a headshot on <@"+targetID+">")
   }

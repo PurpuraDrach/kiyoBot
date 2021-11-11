@@ -67,13 +67,13 @@ var helpJson = {
     },
     {
       "command": "multiply",
-      "description": "A command to multiply 2 or more numbers together. Kiyo isn't a calculator you know.",
+      "description": "A command to multiply 2 or more numbers together. Hyuni isn't a calculator you know.",
       "example": "input: `.multiply 1 2 3 4 5` \noutput: `120`",
       "syntax": ".multiply <numbers>"
     },
     {
       "command": "profile",
-      "description": "Use this command to show your profile. Kiyo will take gooooood care of it.",
+      "description": "Use this command to show your profile. Hyuni will take gooooood care of it.",
       "example": "you really need an example for this?",
       "syntax": ".profile <ping>"
     },
@@ -91,7 +91,7 @@ var helpJson = {
     },
     {
       "command": "snipe",
-      "description": "Use this command to snipe others...or yourself, either ways kiyo is happy to oblige.",
+      "description": "Use this command to snipe others...or yourself, either ways Hyuni is happy to oblige.",
       "example": ".snipe @Bakarina",
       "syntax": "`.snipe <pings>"
     }
