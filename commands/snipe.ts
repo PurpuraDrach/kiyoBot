@@ -11,7 +11,7 @@ const snipeImages = [
 module.exports.snipeCommand = function(receivedMessage: any, inArguments: string[]) {
   const snipeEmbed = new Main.Discord.MessageEmbed();
   snipeEmbed.setImage(snipeImages[Math.floor(Math.random() + snipeImages.length)])
-  snipeEmbed.setFooter("Hyuni deez nuts", 'https://i.imgur.com/sl4ed8w.png')
+  snipeEmbed.setFooter("Kiyo is here", 'https://i.imgur.com/L2AX0X4.jpg')
   snipeEmbed.setImage(snipeImages[Math.floor(Math.random() * snipeImages.length)])
 
   var authorID = receivedMessage.author.id
@@ -20,8 +20,9 @@ module.exports.snipeCommand = function(receivedMessage: any, inArguments: string
   // check if target exists
   if (inArguments.length > 0) {
     // extract ping
-    if (inArguments[0].length == 22 && inArguments[0].slice(0,3) == '<@!' && Number(inArguments[0].slice(3,21))) {
-      targetID = inArguments[0].slice(3,21)
+    if ((inArguments[0].length == 22 && inArguments[0].slice(0,3) == '<@!' && Number(inArguments[0].slice(3,21))) || 
+        (inArguments[0].length == 21 && inArguments[0].slice(0,2) == '<@' && Number(inArguments[0].slice(2,20)))) {
+      targetID = inArguments[0].slice(2,20)
     }
   }
 

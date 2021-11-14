@@ -19,8 +19,9 @@ module.exports.deezNutsCommand = function(receivedMessage: any, inArguments: str
   // check if target exists
   if (inArguments.length > 0) {
     // extract ping
-    if (inArguments[0].length == 22 && inArguments[0].slice(0,3) == '<@!' && Number(inArguments[0].slice(3,21))) {
-      targetID = inArguments[0].slice(3,21)
+    if ((inArguments[0].length == 22 && inArguments[0].slice(0,3) == '<@!' && Number(inArguments[0].slice(3,21))) || 
+        (inArguments[0].length == 21 && inArguments[0].slice(0,2) == '<@' && Number(inArguments[0].slice(2,20)))) {
+      targetID = inArguments[0].slice(2,20)
     }
   }
 
