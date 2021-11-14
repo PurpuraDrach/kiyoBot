@@ -1,1 +1,1 @@
-worker: tsc && node ./build/bot.js
+worker: npm run prod
