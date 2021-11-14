@@ -17,8 +17,8 @@ client.on('ready', () => {
   client.user.setActivity("Deez Nuts")
 //   client.user.setAvatar("https://i.imgur.com/L2AX0X4.jpg")
 //   client.user.setUsername("Kiyo")
-  client.user.setAvatar("https://i.imgur.com/sl4ed8w.png") // make a global variable for this image to use in embed
-  client.user.setUsername("Hyuni bot | .")
+  client.user.setAvatar("https://i.imgur.com/cgfhZTd.png") // make a global variable for this image to use in embed
+  client.user.setUsername("Puggy bot | .")
 })
 
 // recieveing messages

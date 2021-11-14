@@ -49,7 +49,7 @@ var helpJson = {
     },
     {
       "command": "daily",
-      "description": "Use this command to get your daily freebies.",
+      "description": "Use this command to get your daily freebies. Still under development.",
       "example": "You can use .daily <ping> to steal other peoples dail- o wait sorry you can't you dirty little scumbag.",
       "syntax": ".daily"
     },
@@ -73,19 +73,19 @@ var helpJson = {
     },
     {
       "command": "profile",
-      "description": "Use this command to show your profile. Hyuni will take gooooood care of it.",
+      "description": "Use this command to show your profile. Hyuni will take gooooood care of it. Still under development",
       "example": "you really need an example for this?",
       "syntax": ".profile <ping>"
     },
     {
       "command": "setsummary",
-      "description": "Use this command to set your summary in your profile. I wanna know about you, anchin.",
+      "description": "Use this command to set your summary in your profile. Still under development",
       "example": ".setsummary I am a good person. Maybe. Possibly.",
       "syntax": ".setsummary <description/sumamry>"
     },
     {
       "command": "settitle",
-      "description": "Use this command to show set your title in your profile.",
+      "description": "Use this command to show set your title in your profile. Still under development",
       "example": ".setittle The Boss",
       "syntax": ".settitle <title>"
     },
@@ -94,6 +94,12 @@ var helpJson = {
       "description": "Use this command to snipe others...or yourself, either ways Hyuni is happy to oblige.",
       "example": ".snipe @Bakarina",
       "syntax": "`.snipe <pings>"
+    },
+    {
+      "command": "deeznuts",
+      "description": "Use this command get DEEZ NUTS.",
+      "example": ".deeznuts @Bakarina || .deeznuts",
+      "syntax": "`.deeznuts <pings>"
     }
   ]
 }

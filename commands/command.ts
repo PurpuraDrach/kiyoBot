@@ -7,6 +7,7 @@ const chicken = require('./chicken')
 const snipe = require('./snipe')
 const daily = require('./daily')
 const echo = require('./echo')
+const deezNuts = require('./deezNuts')
 
 const databaseManagement = require('../utils/databaseManagement')
 
@@ -31,6 +32,8 @@ module.exports.doCommand = function(primaryCommand: string, receivedMessage: any
       snipe.snipeCommand(receivedMessage, inArguments)
   } else if (primaryCommand == "daily"){
       daily.dailyCommand(receivedMessage)
+  } else if (primaryCommand == "deeznuts") {
+      deezNuts.deezNutsCommand(receivedMessage, inArguments)
   } else {
       receivedMessage.channel.send("I don't understand the command. Try `.help`")
   }
